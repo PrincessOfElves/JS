@@ -1,7 +1,6 @@
 function calc(op, a, b){
     
-    if (typeof op === "undefined" || typeof a === "undefined" || typeof b === "undefined" || 
-        typeof a !== "number" || typeof b !== "number"){
+    if (typeof op === "undefined" || typeof a !== "number" || typeof b !== "number"){
 
         return "Error";
     }
