@@ -51,5 +51,4 @@ console.log(calc("pow",2,)); //Error
 console.log(calc(2,3));//Error
 console.log(calc()); //Error
 console.log(calc("sum","mn",4)); //Error
-console.log(calc("sum","mn",4)); //Error
 console.log(calc("div",4,0)); //Division by 0 is not possible
