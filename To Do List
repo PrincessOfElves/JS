@@ -1,0 +1,60 @@
+//Create list object
+const list = {
+    "paint the room": "In Progress",
+    "buy a notebook": "Done",
+    "schedule dance class": "To Do",
+    "clean the kitchen" : "To Do",
+   };
+
+
+//Create function changeStatus
+function changeStatus(key,value){
+    list[key] = value;
+}
+changeStatus("clean the kitchen","In Progress");
+
+
+//Create function addTask
+function addTask(key){
+        list[key] = "To Do";
+}
+addTask("have a walk");
+addTask("bake cake");
+
+
+//Create function deleteTask
+function deleteTask(key){
+    delete list[key];
+}
+deleteTask("schedule dance class");
+deleteTask("buy a notebook");
+
+
+//Create function showList
+function showList(){
+
+    let toDoResult = 'To Do: \n'
+    let inProgressResult = 'In Progress: \n';
+    let doneResult = 'Done: \n';
+    
+    for(let key in list){
+
+        switch (list[key]){
+
+            case "To Do": toDoResult += ' ' + key + ',\n';
+            break;
+            case "In Progress": inProgressResult += ' ' + key + ',\n';
+            break;
+            case "Done": doneResult += ' ' + key + ',\n';
+            break;
+            default: break;    
+        }
+    }
+    if(toDoResult       === 'To Do: \n'){toDoResult += '-\n'}
+    if(inProgressResult === 'In Progress: \n'){inProgressResult += '-\n'}
+    if(doneResult       === 'Done: \n'){doneResult += '-\n'};
+    
+    console.log(toDoResult + inProgressResult + doneResult);
+}
+
+showList();
