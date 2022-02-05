@@ -1,0 +1,99 @@
+const STATUS = {
+    TO_DO: "To Do",
+    IN_PROGRESS: "In Progress",
+    DONE: "Done",
+};
+
+const DEFAULT_STATUS = "To Do";
+
+const PRIORITY = {
+    HIGH: "high",
+    LOW: "low",
+};
+
+const DEFAULT_PRIORITY = "low";
+
+const list = [
+    {name: "paint the room", status: STATUS.IN_PROGRESS, priority: PRIORITY.LOW},
+    {name: "buy a notebook", status: STATUS.DONE, priority: PRIORITY.HIGH},
+    {name: "schedule dance class", status: STATUS.TO_DO, priority: PRIORITY.LOW},
+    {name: "clean the kitchen", status: STATUS.TO_DO, priority: PRIORITY.HIGH},
+];
+
+
+function addTask(task){
+    list.push({name: task, status: DEFAULT_STATUS, priority: DEFAULT_PRIORITY});
+}
+addTask("have a walk");
+addTask("bake chocolate cake");
+
+function deleteTask(task){
+    let listElement =  list.find(item => item.name == task);
+    for (let i = list.length - 1; i >= 0; i--) {
+        if (list[i] === listElement) {
+         list.splice(i, 1);
+        }
+    }
+    
+}
+deleteTask("schedule dance class");
+
+
+function changeStatus(task,taskStatus,taskPriority){
+    let listElement =  list.find(item => item.name == task);
+    for (let i = list.length - 1; i >= 0; i--) {
+        if (list[i] === listElement) {
+            listElement.status = taskStatus;
+            listElement.priority = taskPriority;
+        }
+    }
+
+}
+changeStatus("paint the room", STATUS.DONE,PRIORITY.HIGH);
+
+function showList(property){
+    if (property === "status"){
+        const tasks = {
+            [STATUS.TO_DO]: "",
+            [STATUS.IN_PROGRESS]: "",
+            [STATUS.DONE]: "",
+        };
+      
+    list.forEach(element => {
+        tasks[element.status] += element.name + '\n';
+    });
+    
+    if (tasks[STATUS.TO_DO] === ""){
+        tasks[STATUS.TO_DO] += '- \n'
+    }
+    if (tasks[STATUS.IN_PROGRESS] === ""){
+        tasks[STATUS.IN_PROGRESS] += '- \n'
+    }
+    if (tasks[STATUS.DONE] === ""){
+        tasks[STATUS.DONE] += '- \n'
+    }
+    
+    console.log(`To Do :\n${tasks[STATUS.TO_DO]}\nIn Progress :\n${tasks[STATUS.IN_PROGRESS]}\nDone :\n${tasks[STATUS.DONE]}`);
+    }
+
+    if(property === "priority"){
+        const priorityTask = {
+            [PRIORITY.LOW]: "",
+            [PRIORITY.HIGH]: "",
+        };
+
+        list.forEach(element => {
+            priorityTask[element.priority] += element.name + '\n';
+        });
+        
+        if (priorityTask[PRIORITY.LOW] === ""){
+            priorityTask[PRIORITY.LOW] += '- \n'
+        }
+        if (priorityTask[PRIORITY.HIGH] === ""){
+            priorityTask[PRIORITY.HIGH] += '- \n'
+        }
+    console.log(`Low :\n${priorityTask[PRIORITY.LOW]}\nHigh :\n${priorityTask[PRIORITY.HIGH]}`);
+    }
+}
+
+showList("status");
